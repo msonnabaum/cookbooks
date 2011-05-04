@@ -24,21 +24,23 @@ default['php']['install_method'] = 'package'
 
 case node["platform"]
 when "centos", "redhat", "fedora"
-  default['php']['conf_dir']      = '/etc'
-  default['php']['ext_conf_dir']  = '/etc/php.d'
-  default['php']['fpm_user']      = 'nobody'
-  default['php']['fpm_group']     = 'nobody'
-  default['php']['ext_dir']       = "/usr/#{lib_dir}/php/modules"
+  default['php']['conf_dir']            = '/etc'
+  default['php']['ext_conf_dir']        = '/etc/php.d'
+  default['php']['fpm_user']            = 'nobody'
+  default['php']['fpm_group']           = 'nobody'
+  default['php']['ext_dir']             = "/usr/#{lib_dir}/php/modules"
 when "debian", "ubuntu"
-  default['php']['conf_dir']      = '/etc/php5/cli'
-  default['php']['ext_conf_dir']  = '/etc/php5/conf.d'
-  default['php']['fpm_user']      = 'www-data'
-  default['php']['fpm_group']     = 'www-data'
+  default['php']['conf_dir']['apache2']  = '/etc/php5/apache2'
+  default['php']['conf_dir']['cli']     = '/etc/php5/cli'
+  default['php']['conf_dir']['cgi']     = '/etc/php5/cgi'
+  default['php']['ext_conf_dir']        = '/etc/php5/conf.d'
+  default['php']['fpm_user']            = 'www-data'
+  default['php']['fpm_group']           = 'www-data'
 else
-  default['php']['conf_dir']      = '/etc/php5/cli'
-  default['php']['ext_conf_dir']  = '/etc/php5/conf.d'
-  default['php']['fpm_user']      = 'www-data'
-  default['php']['fpm_group']     = 'www-data'
+  default['php']['conf_dir']            = '/etc/php5/cli'
+  default['php']['ext_conf_dir']        = '/etc/php5/conf.d'
+  default['php']['fpm_user']            = 'www-data'
+  default['php']['fpm_group']           = 'www-data'
 end
 
 default['php']['url'] = 'http://us.php.net/distributions'
